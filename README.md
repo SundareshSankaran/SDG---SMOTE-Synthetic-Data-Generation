@@ -12,18 +12,17 @@ This animated gif provides a basic idea:
 
 ----
 ## Table of Contents
-1. [Prerequisites](#prerequisites)
-2. [Requirements](#requirements)
-3. [Parameters](#parameters)
+1. [Requirements](#requirements)
+2. [Parameters](#parameters)
    1. [Input Parameters](#input-parameters)
    2. [Configuration](#configuration)
    3. [Output Specifications](#output-specifications)
-4. [Run-time Control](#run-time-control)
-5. [Documentation](#documentation)
-6. [SAS Program](#sas-program)
-7. [Installation and Usage](#installation--usage)
-8. [Created/Contact](#createdcontact)
-9. [Change Log](#change-log)
+3. [Run-time Control](#run-time-control)
+4. [Documentation](#documentation)
+5. [SAS Program](#sas-program)
+6. [Installation and Usage](#installation--usage)
+7. [Created/Contact](#createdcontact)
+8. [Change Log](#change-log)
 ----
 ## Requirements
 
@@ -37,7 +36,7 @@ This animated gif provides a basic idea:
 
    1. Python 3.9.x required (dependent packages don't run on higher versions)
    2. [sas-ipc-queue](https://pypi.org/project/sas-ipc-queue/) , version atleast 0.7.0 and beyond 
-   3. hnswlib - https://pypi.org/project/hnswlib/
+   3. [hnswlib](https://pypi.org/project/hnswlib/)
 
 -----
 
@@ -45,40 +44,33 @@ This animated gif provides a basic idea:
 ----
 ### Input Parameters
 
-1. Input table (input port, required): 
+1. Input table (input port, required): connect a CAS table to the input port.
 
-2. Nearest neighbors (numeric stepper, default 5): 
+2. Nearest neighbors (numeric stepper, default 5): select the number of nearest neighbours to be used by the SMOTE algorithm as the basis for identifying candidate synthetic points.
 
-3. Input columns (column selector):
+3. Input columns (column selector): select all inputs for the SMOTE process.  You would also need to include the class and any nominal columns.
 
-4. Select a class column (column selector, optional): 
+4. Nominal variables (column selector): select any nominal variables you wish to use.
 
-5. Class to augment (drop-down list, values from class column if selected): 
+5. Select a class column (column selector, optional): select a column if you wish to use SMOTE in order to balance or augment a level within the class column.  Be judicious in the choice of this column since a column with a high number of levels may slow down or even fail the process.
+
+6. Class to augment (drop-down list, values from class column if selected): select the level of the class variable you wish to augment.  The values that appear here depend on the data that's contained in the class column, so may take time to populate based on actual data and number of levels.
 
 
 ----
 ### Configuration 
 
-1. **Embedding model** (text field, required):  provide the name of your Azure OpenAI deployment of an OpenAI embedding model. For convenience, it's suggested to use the same name as the model you wish to use. For example, if your OpenAI embedding model happens to be text-embedding-3-small, use the same name for your deployment. 
+1. **Number of threads:** (numeric stepper, optional):  most of the time, you do not need to modify this.  Change if you need to especially control the number of threads in which the process runs.
 
-2. **Vector store persistent path** (text field, defaults to /tmp if blank): provide a path to a ChromaDB database.  If blank, this defaults to /tmp on the filesystem. 
-
-3. **Chroma DB collection name** (text field): provide name of the Chroma DB collection you wish to use.  If the collection does not exist, a new one will be created. Ensure you have write access to the persistent area.
-
-4. **Text generation model** (text field, required): provide the name of an Azure OpenAI text generation deployment.  For convenience, you may choose to use the same name as the OpenAI LLM. Example, gpt-35-turbo to gpt-35-turbo.
-
-5. **Azure OpenAI service details** (file selector for key and text fields, required): provide a path to your Azure OpenAI access key.  Ensure this key is saved within a text file in a secure location on the filesystem.  Users are responsible for providing their keys to use this service.  In addition, also refer to your Azure OpenAI service to obtain the service endpoint and region.
+2. **Select a seed** (numeric field, optional): specify a seed number to establish (but not completely guarantee) some level of reproducability with respect to results.
 
 ----
-### Output Specifications
+### Output Specification
 
-Results (the answer from the LLM) are printed by default to the output window.
 
-1. **Temperature** (numeric stepper, default 0, max 1): temperature for an LLM affects its abiity to predict the next word while generating responses.  A rule of thumb is that a temperature closer to 0 indicates the model uses the predicted next word with the highest probability and provides stable responses, whereas a temperature of 1 increases the randomness with which the model predicts the next word which may lead to more creative responses.
+1. **Number of synthetic observations** (numeric field): specify the number of synthetic observations you would like in the output table.
 
-2. **Context size** (numeric stepper, default 10): select how many similar results from the vector store should be retrieved and provided as context to the LLM.  Note that a higher number results in more tokens provided as part of the prompt.
-
-3. **Output table** (output port, option): attach either a CAS table or sas7bdat to the output port of this node to hold results.  These results contain the LLM's answer, the original question and supporting retrieved results. 
+2. **Output table** (output port, option): attach a CAS table to the output port to hold results.  
 
 ----
 ## Run-time Control
@@ -89,7 +81,7 @@ Refer this blog (https://communities.sas.com/t5/SAS-Communities-Library/Switch-o
 
 The following macro variable,
 ```sas
-_aor_run_trigger
+_smt_run_trigger
 ```
 
 will initialize with a value of 1 by default, indicating an "enabled" status and allowing the custom step to run.
@@ -99,14 +91,14 @@ If you wish to control execution of this custom step, include code in an upstrea
 To "disable" this step, run the following code upstream:
 
 ```sas
-%global _aor_run_trigger;
-%let _aor_run_trigger =0;
+%global _smt_run_trigger;
+%let _smt_run_trigger =0;
 ```
 
 To "enable" this step again, run the following (it's assumed that this has already been set as a global variable):
 
 ```sas
-%let _aor_run_trigger =1;
+%let _smt_run_trigger =1;
 ```
 
 
@@ -124,7 +116,7 @@ IMPORTANT: Be aware that disabling this step means that none of its main executi
 ----
 ## SAS Program
 
-Refer [here](./extras/LLM%20-%20Azure%20Open%20AI%20RAG.sas) for the SAS program used by the step.  You'd find this useful for situations where you wish to execute this step through non-SAS Studio Custom Step interfaces such as the [SAS Extension for Visual Studio Code](https://github.com/sassoftware/vscode-sas-extension), with minor modifications. 
+Refer [here](./extras/SDG_SMOTE_Synthetic_Data.sas) for the SAS program used by the step.  You'd find this useful for situations where you wish to execute this step through non-SAS Studio Custom Step interfaces such as the [SAS Extension for Visual Studio Code](https://github.com/sassoftware/vscode-sas-extension), with minor modifications. 
 
 ----
 ## Installation & Usage
@@ -134,11 +126,12 @@ Refer [here](./extras/LLM%20-%20Azure%20Open%20AI%20RAG.sas) for the SAS program
 ----
 ## Created/contact: 
 
-1. Samiul Haque (samiul.haque@sas.com)
-2. Sundaresh Sankaran (sundaresh.sankaran@sas.com)
+1. Sundaresh Sankaran (sundaresh.sankaran@sas.com)
+
+Acknowledgements to David Olaleye (david.olaleye@sas.com) & Suneel Grover (suneel.grover@sas.com) for helping explore the action.
 
 ----
 ## Change Log
 
-* Version 1.1 (03APR2024) 
+* Version 1.0 (10APR2024) 
     * Initial version

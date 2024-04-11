@@ -6,3 +6,6 @@ with open(os.path.join(os.getcwd(),"extras","SDG_SMOTE_Synthetic_Data.sas"), 'w'
     for fname in code_list:
         with open(os.path.join(code_dir,fname)) as infile:
             outfile.write(infile.read())
+            outfile.write("   \n")
+            outfile.write("   \n")
+            outfile.write("   \n")

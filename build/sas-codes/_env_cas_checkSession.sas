@@ -1,5 +1,3 @@
-/* SAS templated code goes here */
-
 /*-----------------------------------------------------------------------------------------*
    Macro to capture indicator and UUIDof any currently active CAS session.
    UUID is not expensive and can be used in future to consider graceful reconnect.

@@ -1,1 +1,0 @@
-_env_cas_checkSession(errorFlagName, errorFlagDesc)

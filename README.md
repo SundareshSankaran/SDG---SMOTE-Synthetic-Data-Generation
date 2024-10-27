@@ -63,6 +63,7 @@ This animated gif provides a basic idea:
 1. **Number of threads:** (numeric stepper, optional):  most of the time, you do not need to modify this.  Change if you need to especially control the number of threads in which the process runs.
 
 2. **Select a seed** (numeric field, optional): specify a seed number to establish (but not completely guarantee) some level of reproducability with respect to results.
+3. **Select extrapolation factor**: specify a number (double) to use as a standard deviation in order to perturb (add noise or randomness) the input data boundaries. 
 
 ----
 ### Output Specification
@@ -126,12 +127,17 @@ Refer [here](./extras/SDG_SMOTE_Synthetic_Data.sas) for the SAS program used by 
 ----
 ## Created/contact: 
 
-1. Sundaresh Sankaran (sundaresh.sankaran@sas.com)
+- Sundaresh Sankaran (sundaresh.sankaran@sas.com)
 
-Acknowledgements to David Olaleye (david.olaleye@sas.com) & Suneel Grover (suneel.grover@sas.com) for helping explore the action.
-
+Acknowledgements to others for their help on details, testing or exploring the area: 
+- David Olaleye (david.olaleye@sas.com)
+- Suneel Grover (suneel.grover@sas.com)
+- Reza Nazari (reza.nazari@sas.com)
+- SAS Analytics R&D team
 ----
 ## Change Log
 
 * Version 1.0 (10APR2024) 
     * Initial version
+* Version 1.1 (27OCT2024) 
+    * Version for GitHub release

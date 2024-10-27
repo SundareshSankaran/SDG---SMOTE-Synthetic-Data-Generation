@@ -63,6 +63,7 @@ This animated gif provides a basic idea:
 1. **Number of threads:** (numeric stepper, optional):  most of the time, you do not need to modify this.  Change if you need to especially control the number of threads in which the process runs.
 
 2. **Select a seed** (numeric field, optional): specify a seed number to establish (but not completely guarantee) some level of reproducability with respect to results.
+3. **Select extrapolation factor**: specify a number (double) to use as a standard deviation in order to perturb (add noise or randomness) the input data boundaries. 
 
 ----
 ### Output Specification

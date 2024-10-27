@@ -127,12 +127,17 @@ Refer [here](./extras/SDG_SMOTE_Synthetic_Data.sas) for the SAS program used by 
 ----
 ## Created/contact: 
 
-1. Sundaresh Sankaran (sundaresh.sankaran@sas.com)
+- Sundaresh Sankaran (sundaresh.sankaran@sas.com)
 
-Acknowledgements to David Olaleye (david.olaleye@sas.com) & Suneel Grover (suneel.grover@sas.com) for helping explore the action.
-
+Acknowledgements to others for their help on details, testing or exploring the area: 
+- David Olaleye (david.olaleye@sas.com)
+- Suneel Grover (suneel.grover@sas.com)
+- Reza Nazari (reza.nazari@sas.com)
+- SAS Analytics R&D team
 ----
 ## Change Log
 
 * Version 1.0 (10APR2024) 
     * Initial version
+* Version 1.1 (27OCT2024) 
+    * Version for GitHub release

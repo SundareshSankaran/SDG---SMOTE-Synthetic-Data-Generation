@@ -1,4 +1,4 @@
-# Synthetic Minority Oversampling TEchnique (SMOTE) Synthetic Data Generation
+# Synthetic Minority Oversampling TEchnique (SMOTE) 
 
 This custom step helps you generate synthetic data based on an input table, using the Synthetic Minority Oversampling TEchnique (SMOTE). SMOTE is an oversampling technique which identifies new data observations in the neighborhood of closely associated original observations. 
 
@@ -26,20 +26,20 @@ This animated gif provides a basic idea:
 ----
 ## Requirements
 
-1. A SAS Viya 4 environment, preferably monthly stable 2024.03 or later
+1. A SAS Viya 4 environment, preferably monthly stable 2024.10 or later
 
-2. A Visual Data Mining and Machine Learning (VDMML) license, usually provided with Viya Enterprise or higher, is required.
+2. A Visual Data Mining and Machine Learning (VDMML) license, usually provided with SAS Viya, SAS Viya Enterprise or Advanced.
 
 3. An active SAS Cloud Analytics Services (CAS) connection during runtime.
 
-4. The smote.smoteSample CAS action requires Python configuration, as specified in [SAS documentation](https://go.documentation.sas.com/doc/en/pgmsascdc/default/casactml/casactml_smote_details01.htm). Please work with your SAS administrator to have the same configured. Ensure the following:
+4. The smote.smoteSample CAS action requires Python configuration, as specified in [SAS documentation](https://go.documentation.sas.com/doc/en/pgmsascdc/default/casactml/casactml_smote_details01.htm). Please work with your SAS administrator to have the same configured. Specifically, ensure the following:
 
-   1. Python 3.9.x required (dependent packages don't run on higher versions)
+   1. The correct version of Python is installed (as of version 2024.10, this was 3.11.x required 
    2. [sas-ipc-queue](https://pypi.org/project/sas-ipc-queue/) , version atleast 0.7.0 and beyond 
    3. [hnswlib](https://pypi.org/project/hnswlib/)
+   4. [protobuf](https://pypi.org/project/protobuf/)
 
 -----
-
 ## Parameters
 ----
 ### Input Parameters
@@ -113,6 +113,7 @@ IMPORTANT: Be aware that disabling this step means that none of its main executi
 2. PyPi page for [sas-ipc-queue](https://pypi.org/project/sas-ipc-queue/) 
 
 3. PyPi page for [hnswlib](https://pypi.org/project/hnswlib/)
+4. PyPi page for [protobuf](https://pypi.org/project/protobuf/)
 
 ----
 ## SAS Program
@@ -139,5 +140,5 @@ Acknowledgements to others for their help on details, testing or exploring the a
 
 * Version 1.0 (10APR2024) 
     * Initial version
-* Version 1.1 (27OCT2024) 
+* Version 1.1 (28OCT2024) 
     * Version for GitHub release

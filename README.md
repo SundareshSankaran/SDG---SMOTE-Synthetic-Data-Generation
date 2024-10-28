@@ -34,7 +34,7 @@ This animated gif provides a basic idea:
 
 4. The smote.smoteSample CAS action requires Python configuration, as specified in [SAS documentation](https://go.documentation.sas.com/doc/en/pgmsascdc/default/casactml/casactml_smote_details01.htm). Please work with your SAS administrator to have the same configured. Specifically, ensure the following:
 
-   1. The correct version of Python is installed (as of version 2024.10, this was 3.11.x required 
+   1. The correct version of Python is installed (as of version 2024.10, this was 3.11.x)  
    2. [sas-ipc-queue](https://pypi.org/project/sas-ipc-queue/) , version atleast 0.7.0 and beyond 
    3. [hnswlib](https://pypi.org/project/hnswlib/)
    4. [protobuf](https://pypi.org/project/protobuf/)

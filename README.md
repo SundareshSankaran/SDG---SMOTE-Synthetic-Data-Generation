@@ -6,9 +6,9 @@ SMOTE is an alternative approach to Generative Adversarial Networks (GANs) for g
 
 ## A general idea
 
-This animated gif provides a basic idea: 
+This video (click on below image to play) provides a basic idea: 
 
-![SDG - SMOTE](./img/SMOTE_SDG.gif)
+[![SDG - SMOTE](./img/SDG_SMOTE.png)](https://www.youtube.com/watch?v=iVFv1ewVU20)
 
 ----
 ## Table of Contents

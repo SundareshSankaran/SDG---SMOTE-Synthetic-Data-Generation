@@ -64,7 +64,7 @@ This video (click on below image to play) provides a basic idea:
 
 2. **Select a seed** (numeric field, optional): specify a seed number to establish (but not completely guarantee) some level of reproducability with respect to results.
 3. **Select extrapolation factor**: specify a number (double) to use as a standard deviation in order to perturb (add noise or randomness) the input data boundaries. 
-
+4. **Name for synthetic data provenance variable (optional, default provided)**: insert a value only if you want to give a special name to a flag that indicates this data is synthetic.  Otherwise, a default name of Synthetic_Data_Provenance will be used instead.
 ----
 ### Output Specification
 
@@ -138,7 +138,10 @@ Acknowledgements to others for their help on details, testing or exploring the a
 ----
 ## Change Log
 
+* Version 1.2 (09NOV2024) 
+    * Add Provenance Flag
+* Version 1.1 (02NOV2024) 
+    * Version for GitHub release
 * Version 1.0 (10APR2024) 
     * Initial version
-* Version 1.1 (28OCT2024) 
-    * Version for GitHub release
+
